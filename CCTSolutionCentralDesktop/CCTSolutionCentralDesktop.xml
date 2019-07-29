@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RunConfig>
+		<data type="dropdown" value="browser" dvalues="IE#Chrome#"/>
+		<data type="dropdown" value="environment" dvalues="SIT#UAT"/> 
+		<data type="Textbox" value="username" dvalues=""/>
+		<data type="Password" value="password" dvalues=""/>
+</RunConfig>	

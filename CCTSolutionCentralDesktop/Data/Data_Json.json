@@ -1,0 +1,26 @@
+
+[ 
+ {
+"id":"Data_POC",
+"username":"WAWID212",
+"password":"123456",
+"memberid":"381T60371",
+"firstname":"TERRENCE"
+},
+{
+"id":"Data_2",
+"username":"WAWID212",
+"password":"123456",
+"memberid":"381T6023",
+"firstname":"TERRENCE",
+"calimnumber":"123456789"
+},
+{
+	"id":"Data_3",
+	"username":"WAWID205",
+	"password":"123456",
+	"memberid":"381T123453",
+	"firstname":"Hello",
+	"billamount":"120$"
+	}
+ ] 

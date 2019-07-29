@@ -1,0 +1,4 @@
+API_GroupDetail-getGroupDetail:grpId,subgrpId,srcSysId,subscriberId
+API_MemberSearch-getMemberLookUpID:mbrLookupId
+API_Claims-getClaims:clmseqnbr
+API_eligibility-getEligibility:mbrUid,firstNm

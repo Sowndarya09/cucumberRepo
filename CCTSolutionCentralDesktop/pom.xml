@@ -1,0 +1,318 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>SolutionCentral</groupId>
+	<artifactId>SolutionCentralSelenium</artifactId>
+	<version>0.0.3-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>SolutionCentralSelenium</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>3.0.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.53.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-remote-driver -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-remote-driver</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.temyers</groupId>
+			<artifactId>cucumber-jvm-parallel-plugin</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>22.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jtattoo</groupId>
+			<artifactId>JTattoo</artifactId>
+			<version>1.6.11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ojdbc</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.2.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/Jar Files/ojdbc6-11.2.0.2.0.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>2.12.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/exec-maven-plugin -->
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>exec-maven-plugin</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+
+
+
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>ru.yandex.qatools.ashot</groupId>
+			<artifactId>ashot</artifactId>
+			<version>1.5.3</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.21.0</version>
+				<configuration>
+					<useSystemClassLoader>false</useSystemClassLoader>
+					<forkCount>4</forkCount>
+					<reuseForks>true</reuseForks>
+					<includes>
+						<include>**/*IT.class</include>
+					</includes>
+					<systemPropertyVariables>
+						<TEST_TYPE>${bambooTestType}</TEST_TYPE>
+						<TEST_NAME>${bambooTestName}</TEST_NAME>
+						<TEST_BUILD>${bambooBuildNumber}</TEST_BUILD>
+						<TEST_ENVIRONMENT>${testEnvironment}</TEST_ENVIRONMENT>
+						<TEST_EXECUTION_REPORT>${testExecutionReport}</TEST_EXECUTION_REPORT>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.temyers</groupId>
+				<artifactId>cucumber-jvm-parallel-plugin</artifactId>
+				<version>5.0.0</version>
+				<executions>
+					<execution>
+						<id>generateRunners</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>generateRunners</goal>
+						</goals>
+						<configuration>
+							<!-- Mandatory -->
+							<!-- List of package names to scan for glue code. -->
+							<glue>
+								<package>stepdefinition</package>
+							</glue>
+
+							<!-- These are the default values -->
+
+							<!-- The diectory, which must be in the root of the runtime classpath, 
+								containing your feature files. -->
+							<featuresDirectory>${testFolder}</featuresDirectory>
+
+							<!-- Where to output the generated tests -->
+							<outputDirectory>${project.build.directory}/cucumber/generated-test-sources</outputDirectory>
+
+							<!-- Directory where the cucumber report files shall be written -->
+							<cucumberOutputDir>target/cucumber/reports</cucumberOutputDir>
+
+							<!-- comma separated list of output formats -->
+							<!-- <format>json,html</format> -->
+
+							<plugins>
+								<plugin>
+									<name>json</name>
+								</plugin>
+							</plugins>
+
+							<!-- CucumberOptions.strict property -->
+							<strict>false</strict>
+
+							<!-- CucumberOptions.monochrome property -->
+							<monochrome>true</monochrome>
+
+							<!-- Generate TestNG runners instead of JUnit ones. -->
+							<useTestNG>false</useTestNG>
+
+							<!-- The naming scheme to use for the generated test classes. One 
+								of ['simple', 'feature-title', 'pattern'] -->
+							<namingScheme>pattern</namingScheme>
+
+							<!-- The class naming pattern to use. Only required/used if naming 
+								scheme is 'pattern'. -->
+							<namingPattern>SolutionCentralRunner{c}IT</namingPattern>
+
+							<!-- One of [SCENARIO, FEATURE]. SCENARIO generates one runner per 
+								scenario. FEATURE generates a runner per feature. -->
+							<parallelScheme>FEATURE</parallelScheme>
+
+							<!-- Specify a custom package name for generated sources. Default 
+								is no package. -->
+							<packageName>runner</packageName>
+
+							<!-- Specify a custom template for the generated sources (this is 
+								a path relative to the project base directory) -->
+							<customVmTemplate>src/test/resources/runnerTemplate/cucumber-extents-report-runner.java.vm</customVmTemplate>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<id>default-cli</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>java</executable>
+							<workingDirectory>/tmp</workingDirectory>
+							<arguments>
+								<argument>-jar</argument>
+								<argument>${project.basedir}/GenerateSummaryReport/GenerateSummaryReport.jar</argument>
+								<!-- <argument>C:\Users\AF67334\Desktop\MyReport\target records\cucumber\reports</argument> 
+									<argument>C:\Users\AF67334\Desktop\GenerateSummaryReport\RegressionTestExecutionResults\Regression\2018-08-07-02-07-04_227_SIT\Reports\SummaryReport.html</argument> -->
+								<argument>${project.basedir}/target/cucumber/reports</argument>
+								<argument>${project.basedir}/TestExecutionRecords/${bambooBuildNumber}/Reports/${testExecutionReport}_${bambooBuildNumber}.html</argument>
+								<argument>${testExecutionReport}_${bambooBuildNumber}</argument>
+								<argument>${project.basedir}/TestExecutionRecords/${bambooBuildNumber}/JSON/${testExecutionReport}_${bambooBuildNumber}.json</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.github.temyers
+										</groupId>
+										<artifactId>
+											cucumber-jvm-parallel-plugin
+										</artifactId>
+										<versionRange>
+											[5.0.0,)
+										</versionRange>
+										<goals>
+											<goal>generateRunners</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

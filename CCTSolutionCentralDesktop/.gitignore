@@ -1,0 +1,23 @@
+# ignore files in target folder
+target/*
+
+# keep the target folder
+!target/.keep
+
+# ignore files * folders in TestExecutionRecords folder
+TestExecutionRecords/*
+
+# keep the TestExecutionRecords folder
+!TestExecutionRecords/.keep
+
+# ignore file * folders in Destination folder
+Destination/*
+
+# keep the Destination folder
+!Destination/.keep
+/target/
+# Eclipse Core
+.project
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath

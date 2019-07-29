@@ -1,0 +1,64 @@
+#parse("/array.java.vm")
+#if ($packageName)
+package $packageName;
+
+#end##
+
+import java.io.File;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+import extentmanager.ExtentManager;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+        strict = $strict,
+        features = {"$featureFile"},
+        plugin = #stringArray($plugins),
+        monochrome = $monochrome,
+		#if(!$featureFile.contains(".feature:") && $tags)
+		        tags = #stringArray($tags),
+		#end
+        glue = #stringArray($glue))
+        
+public class $className {
+	public static String buildNumber= System.getProperty("TEST_BUILD");;
+	public static String reportName=System.getProperty("TEST_EXECUTION_REPORT");
+	public static String reportLocation = "TestExecutionRecords\\" + buildNumber + "\\" + reportName + "_" + buildNumber + "\\DetailedReport\\";
+
+	@BeforeClass
+	public static void setUp() {
+	
+		String featureFileName = "$featureFile";
+		
+		System.out.println("#RUNNER# - $featureFile STARTED.");
+		
+		new File ("TestExecutionRecords//" + buildNumber).mkdirs();
+		new File ("TestExecutionRecords//" + buildNumber + "//" + reportName + "_" + buildNumber).mkdirs(); 
+		new File ("TestExecutionRecords//" + buildNumber + "//Reports").mkdirs();
+		new File ("TestExecutionRecords//" + buildNumber + "//" + reportName + "_" + buildNumber + "//DetailedReport").mkdirs();
+		new File ("TestExecutionRecords//" + buildNumber + "//" + reportName + "_" + buildNumber + "//Screenshots").mkdirs();
+		new File ("TestExecutionRecords//" + buildNumber + "//JSON").mkdirs();
+		
+		int lastIndex = featureFileName.lastIndexOf("/") + 1;
+		
+		System.out.println("#RUNNER# - Last Index : " + lastIndex);
+		
+		String reportName = featureFileName.substring(lastIndex).replace(".feature","");
+
+		System.out.println("#RUNNER# - Report Name : " + reportName);
+
+		System.out.println("#RUNNER# - Test Execution Report : " + reportLocation + reportName + ".html");
+		ExtentManager.createInstance(reportLocation + reportName + ".html");
+			
+	}
+	
+	@AfterClass
+	public static void wrapUp() {
+		
+		System.out.println("#RUNNER# - $featureFile COMPLETED.");
+		
+	}
+}
